@@ -80,9 +80,9 @@ background{ color rgb < 0.1, 0.1, 0.1 > }
     {<0, 0, 0>, <0, 5, 0>, <0, 5, 5>, <0, 0, 5>},
     {<0, 0, 0>, <5, 0, 0>, <5, 5, 0>, <0, 5, 0>},
     {<0, 0, 0>, <0, 0, 5>, <5, 0, 5>, <5, 0, 0>},
-    {<0, 0, 0>, <0, 0, 0>, <0, 0, 0>, <0, 0, 0>},
-    {<0, 0, 0>, <0, 0, 0>, <0, 0, 0>, <0, 0, 0>},
-    {<0, 0, 0>, <0, 0, 0>, <0, 0, 0>, <0, 0, 0>},
+    {<5, 0, 5>, <5, 5, 5>, <5, 5, 0>, <5, 0, 0>},
+    {<5, 5, 0>, <5, 5, 5>, <5, 0, 0>, <5, 0, 5>},
+    {<5, 0, 0>, <5, 0, 5>, <5, 5, 5>, <5, 0, 0>},
     {<0, 0, 0>, <0, 0, 0>, <0, 0, 0>, <0, 0, 0>},
     {<0, 0, 0>, <0, 0, 0>, <0, 0, 0>, <0, 0, 0>},
     {<0, 0, 0>, <0, 0, 0>, <0, 0, 0>, <0, 0, 0>},
@@ -126,35 +126,6 @@ background{ color rgb < 0.1, 0.1, 0.1 > }
     }
 #end
 
-// Aula 5
-#macro poligonoCircular(n)
-    union{
-        #declare p = 1/n;
-        #declare l = n/4;object
-        #declare j = 0;
-        #while(j < n)
-            #if( j <= l)
-              object { bolinha translate interp3(<0,0,0>, <0,1,-2>, <0,3,-2>, <0,4,0>, 0, l, j)}
-            #end
-            #if( (j > l) & (j <= 2*l))
-              object { bolinha translate interp3(<0,4,0>, <0,4,2>, <1,0,2>,  <1,0,4>, l, 2*l, j)}
-            #end
-            #if( (j >  2*l) & (j <= 3*l))
-              object { bolinha translate interp3(<1,0,4>, <0,1,6>, <0,3,6>,  <-1,4,4>, 2*l, 3*l, j)}
-            #end
-            #if( (j >  3*l) & (j <= 4*l))
-              object { bolinha translate interp3(<-1,4,4>, <-1,0,2>, <0,4,2>,  <0,0,0>, 3*l, 4*l, j)}
-            #end
-            #declare j=j+p;
-        #end
-    }
-#end
-
-//#macro interpolate(B0,B1,B2,B3,t0,t1,tt)
-//    #local A = pow(1-t, 3) * B0;
-//    #local B = 3 * t * pow()
-//#end
-
 #macro suavizar(P, N, i)
     // suaviza a juntaentre o arco i e o arco j =  mod(i+1, N)
     #local j = mod(i+1, N);
@@ -179,6 +150,12 @@ union{
   skeleton(P, 1, 0.01)
   object{curvar(50, P, 2)}
   skeleton(P, 2, 0.01)
+  object{curvar(50, P, 3)}
+  skeleton(P, 3, 0.01)
+  object{curvar(50, P, 4)}
+  skeleton(P, 4, 0.01)
+  object{curvar(50, P, 5)}
+  skeleton(P, 5, 0.01)
 
 }
 
