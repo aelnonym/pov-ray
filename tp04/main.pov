@@ -18,12 +18,12 @@
 
 #end
 
-#macro criaPizza(circulos, raio, tam)
+#macro criaPizza(centro, circulos, raio)
     #declare i = circulos;
     #declare passo = (2*pi*raio)/(circulos);
     union{
-      #while(i > (3*circulos)/4)
-        sphere{<tam*sin(passo*i), tam*cos(passo*i), 0>, raio
+      #while(i > circulos)
+        sphere{<centro + sin(passo*i), centro + cos(passo*i), 0>, raio
           texture {tx_grama}
         }
         #declare i = i - 1;
