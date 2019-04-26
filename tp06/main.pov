@@ -109,7 +109,7 @@ background{ color rgb < 0.1, 0.1, 0.1 > }
     union{
         #declare j = 0;
         #declare p = 1/n;
-        #declare l = n;
+        //#declare l = n;
         #while(j < n)
             object{ bolinha translate interp3(vetor[i][0], vetor[i][1], vetor[i][2], vetor[i][3], 0, n, j)  }
             #declare j = j + p;
@@ -133,6 +133,8 @@ background{ color rgb < 0.1, 0.1, 0.1 > }
     #declare P[i][2] = P[i][3] - vv;
     #declare P[j][1] = P[j][0] + vv;
 #end
+
+#macro
 
 // DESCRI��O DA CENA 
 // Partes da cena:
