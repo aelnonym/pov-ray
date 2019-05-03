@@ -134,6 +134,17 @@ sphere {
     texture{ tx_b5 }
 }
 
+#declare boletaIn =
+sphere {
+  < 0, 0,  0>, clock*2 // Near lower left corner
+    texture{ tx_grama }
+}
+#declare boletaOut =
+sphere {
+  < 0, 0,  0>, clock*2 // Near lower left corner
+    texture{ tx_louco }
+}
+
 // ======================================================================
 
 #declare bolinhaRosa =
@@ -338,14 +349,14 @@ union{
   suavizar(ZRS, 6, 4)
   suavizar(ZRS, 6, 5)
   // nohTX(ZRS, 6, 50, boletassa)
+
   #if(clock <= 0.5)
     interpola1matriz(RS, ZRS, 6, 0, 5, clock * 5, R)
-    nohTX(R, 6, 50, boleta1)
+    nohTX(R, 6, 50, boletaIn)
   #else
-    interpola1matriz(RS, ZRS, 6, 0, 5, clock * 5, R)
-    nohTX(R, 6, 50, boleta5)
+    interpola1matriz(ZRS, RS, 6, 0, 5, clock * 5, R)
+    nohTX(R, 6, 50, boletaOut)
   #end
-  // nohTX(R, 6, 50, boleta1)
   // interpola1matriz(RS, ZRS, 6, 0, 5, 1, R)
   // nohTX(R, 6, 50, boleta2)
   // interpola1matriz(RS, ZRS, 6, 0, 5, 2, R)
