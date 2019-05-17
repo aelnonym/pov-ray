@@ -8,7 +8,7 @@
 #include "style.inc"
 
 // Matrizes
-#include "matriz2.inc"
+#include "matriz.inc"
 
 
 background{ color rgb < 0.1, 0.1, 0.1 > }
@@ -23,64 +23,20 @@ background{ color rgb < 0.1, 0.1, 0.1 > }
 #include "eixos.inc"
 
 union{
-    // object{
-    //   criaPerna(2, tx_plastico, 0, 0)
-    //   rotate <-90, 0, 0> // <x°, y°, z°>
-    //   translate <0, 0, 0> // <x, y, z>
-    // }
-    // object{
-    //   criaPerna(2, tx_eks, 45, 45)
-    //   rotate <-90, 0, 0> // <x°, y°, z°>
-    //   translate <0, 0, 0> // <x, y, z>
-    // }
-    // object{
-    //   criaPerna(2, tx_buruu, 30, 30)
-    //   rotate <-90, 0, 0> // <x°, y°, z°>
-    //   translate <0, 0, 0> // <x, y, z>
-    // }
-    // object{
-    //   criaPerna(2, tx_louco, 120, 120)
-    //   rotate <-90, 0, 0> // <x°, y°, z°>
-    //   translate <5, 0, 5> // <x, y, z>
-    // }
-    // object{
-    //   //criaMao(2, tx_louco)
-    // }
-    object{
-        box {
-        <0, 0, 0>, <5, 20, 4> // <x, y, z> near lower left corner, <x, y, z> far upper right corner
-        }
-        texture{tx_louco}
-    }
-    object{ criaPerna(2, tx_eks, 30, -30) 
-                rotate <-90, 0, 0> // <x°, y°, z°>
-                translate <0, 0, 2> // <x, y, z>
-    }
-    object{ criaPerna(2, tx_eks, 30, -30) 
-            rotate <-90, 0, 0> // <x°, y°, z°>
-            translate <4, 0, 2> // <x, y, z>
-    }
-    object{ criaPerna(2, tx_buruu, 30, -30) 
-            rotate <-90, 0, 0> // <x°, y°, z°>
-            translate <0, 10, 2> // <x, y, z>
-    }
-    object{ criaPerna(2, tx_buruu, 30, -30) 
-            rotate <-90, 0, 0> // <x°, y°, z°>
-            translate <4, 10, 2> // <x, y, z>
-    }
-    object{ criaPerna(2, tx_epsilon, 30, -30) 
-            rotate <-90, 0, 0> // <x°, y°, z°>
-            translate <0, 20, 2> // <x, y, z>
-    }
-    object{ criaPerna(2, tx_epsilon, 30, -30) 
-            rotate <-90, 0, 0> // <x°, y°, z°>
-            translate <4, 20, 2> // <x, y, z>
-    }
+    #local frame = busca_tempo(clock, 3, tk);
+
+   // #if(clock <= 0.5)
+        interpola_quadros1(MatrizQ, frame, frame+1, tk[frame], tk[frame+1], clock, MatrizA, 6, 2)
+        criaDagrao(MatrizA, tx_buruu, tx_epsilon, tx_louco)
+//     #else
+//         interpola_quadros1(MatrizQ, frame, frame+1, tk[frame], tk[frame+1], clock, MatrizA, 6, 2)
+//         criaDagrao(MatrizA, tx_louco, tx_epsilon, tx_buruu)
+//     #end
     eixos(20)
 }
 
 #include "camlight.inc"
-#declare centro_cena = < 0.00, 0.00, 1.00 >;
+#declare centro_cena = < 0.00, 5.00, -10.00 >;
 #declare raio_cena = 50.0;
 #declare dir_camera = < 4.00, 3.00, 4.00 >;
 #declare dist_camera = 5*raio_cena;
