@@ -51,3 +51,11 @@
 };
 
 #declare tk = array[4] {0, 0.33, 0.66, 1} //, 0.5, 0.66, 0.83}
+
+
+#declare R1 = array[4][4] {
+    {<x, y, z>, <x, y, z>, <x, y, z>, <x, y, z>},
+    {<x, y, z>, <x, y, z>, <x, y, z>, <x, y, z>},
+    {<x, y, z>, <x, y, z>, <x, y, z>, <x, y, z>},
+    {<x, y, z>, <x, y, z>, <x, y, z>, <x, y, z>}
+};
